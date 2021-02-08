@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="SNT.ControlEquipmentStates.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SNT.ControlEquipmentStates"
+             mc:Ignorable="d" 
+             d:DesignHeight="845" d:DesignWidth="1078"
+             Background="#686868">
+    <UserControl.DataContext>
+        <local:ControlEquipmentStatesViewModal/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <DataTemplate x:Key="HeaderTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center" Margin="3,0"/>
+        </DataTemplate>
+        <Style TargetType="Button" >
+            <Setter Property="Background" Value="#FFB0B0B0"/>
+        </Style>
+        
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="500"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="0 0 0 3" BorderBrush="#FF444444"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="2" BorderThickness="3 3 3 3 " BorderBrush="#FF444444"/>
+            <Border Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="3 0 3 3 " BorderBrush="#FF444444"/>
+            <Border Grid.Row="2" Grid.ColumnSpan="2" BorderThickness="3 0 3 3 " BorderBrush="#FF444444"/>
+            <Border Grid.Row="3" Grid.ColumnSpan="2" BorderThickness="3 0 3 3 " BorderBrush="#FF444444"/>
+            <Border Grid.Row="4" Grid.ColumnSpan="2" BorderThickness="3 0 3 3 " BorderBrush="#FF444444"/>
+            <Border Grid.Row="5" Grid.ColumnSpan="2" BorderThickness="3 0 3 3 " BorderBrush="#FF444444"/>
+            <Border Grid.Row="6" Grid.ColumnSpan="2" BorderThickness="3 0 3 3 " BorderBrush="#FF444444"/>
+            <Border Grid.Row="7" Grid.ColumnSpan="2" BorderThickness="3 0 0 0 " BorderBrush="#FF444444"/>
+            <Border Grid.Row="8" Grid.ColumnSpan="2" BorderThickness="3 0 3 0 " BorderBrush="#FF444444"/>
+            <Border Grid.RowSpan="8" Grid.Column="1" BorderThickness="3 0 0 0 " BorderBrush="#FF444444"/>
+
+            <ListBox SelectedIndex="{Binding CurrentlySelectedState}" Grid.Row="1" Grid.RowSpan="7" Background="{x:Null}" BorderThickness="0">
+                <ListBoxItem Height="40" Margin="0,-1,0,0" Content="Время работы установки:" Foreground="White" FontSize="25"/>
+                <ListBoxItem Height="40" Margin="0,3,0,0" Content="Время работы в аварийном режиме:" Foreground="White" FontSize="25"/>
+                <ListBoxItem Height="40" Margin="0,3,0,0" Content="Время работы в ручном режиме:" Foreground="White" FontSize="25"/>
+                <ListBoxItem Height="40" Margin="0,3,0,0" Content="Время работы в автоматическом режиме:" Foreground="White" FontSize="25"/>
+                <ListBoxItem Height="40" Margin="0,3,0,0" Content="Время простоя:" Foreground="White" FontSize="25"/>
+                <ListBoxItem Height="41" Margin="0,3,0,0" Content="Время работы основных устройств:" Foreground="White" FontSize="25"/>
+                <ListBoxItem Height="40" Margin="0,3,0,0">
+                    <TextBlock Text="Общее время:" Foreground="White" FontSize="25" Margin="480,0,0,0"/>
+                </ListBoxItem>
+            </ListBox>
+
+            <TextBlock Grid.Column="1" Text="Общее время" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding TotalRelease}" Foreground="White" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding TotalAlarmTime}" Foreground="White" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding OperatingTimeInManualMode}" Foreground="White" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding OperatingTimeInAutomaticMode}" Foreground="White" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding TotalDowntime}" Foreground="White" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding OperatingMainDevices}" Foreground="White" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding TotalTime}" Foreground="White" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
+            <Grid Grid.Column="2" Grid.RowSpan="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button  Uid="1" Click="Button_Click" Grid.Row="0" Content="Подробнее" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Width="150" Height="50"/>
+                <Button Uid="2" Click="Button_Click" Grid.Row="1" Content="Обновить" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Width="150" Height="50"/>
+                <Button Uid="3" Click="Button_Click" Grid.Row="2" Content="Очистить" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Width="150" Height="50"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="203"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid Grid.Row="1" IsReadOnly="True" BorderBrush="#FF686868" Foreground="White" ItemsSource="{Binding Details}" HorizontalGridLinesBrush="#FF444444" VerticalGridLinesBrush="#FF444444" Background="{x:Null}" AutoGenerateColumns="False" FontSize="18" RowBackground="#FF686868" HeadersVisibility="Column" >
+                
+                <!--<DataGrid.Resources>
+                    <CollectionViewSource x:Key="ReleaseData" Source="{Binding ReleaseData}"/>
+                </DataGrid.Resources>-->
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Состояние" Width="*" Binding="{Binding IDState}"/>
+                    <DataGridTextColumn Header="Время" Width="*" Binding="{Binding Time}"/>
+                    <DataGridTextColumn Header="Флаг" Width="*" Binding="{Binding Flag}"/>
+                </DataGrid.Columns>
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#3a3e52"/>
+                        <Setter Property="TextElement.Foreground" Value="White"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="ContentTemplate" Value="{StaticResource HeaderTemplate}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#737ba2"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+            </DataGrid>
+            <Border Grid.Column="1" BorderBrush="#FF444444" BorderThickness="3,0,0,0"/>
+            
+        </Grid>
+        
+       
+    </Grid>
+</UserControl>
